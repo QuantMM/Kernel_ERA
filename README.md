@@ -67,37 +67,35 @@ Older exploratory simulation scripts may be retained for reproducibility, but th
 The current implementation estimates
 
 $$
-\min_{{\alpha_k},B}
-\left|
+\min_{\{\alpha_k\},B}
+\left\|
 Y-\sum_{k=1}^K K_k\alpha_k b_k^\top
-\right|*F^2
+\right\|_F^2
 +
-\lambda\sum*{k=1}^K
-\alpha_k^\top K_k\alpha_k,
+\lambda\sum_{k=1}^K
+\alpha_k^\top K_k\alpha_k
 $$
 
 subject to
 
 $$
 \frac{1}{N}
-\left|
+\left\|
 K_k\alpha_k
-\right|_2^2
-===========
-
+\right\|_2^2
+=
 1,
 \qquad
 k=1,\ldots,K.
 $$
 
-Here, (K_k) is the centered Gram matrix for predictor set (k), (\alpha_k) is the corresponding vector of kernel coefficients, and (b_k) is the row of outcome coefficients associated with the (k)th predictor-set component.
+Here, \(K_k\) is the centered Gram matrix for predictor set \(k\), \(\alpha_k\) is the corresponding vector of kernel coefficients, and \(b_k\) is the row of outcome coefficients associated with the \(k\)th predictor-set component.
 
-For fixed (b_k), define the partial residual matrix
+For fixed \(b_k\), define the partial residual matrix
 
 $$
 R_k
-===
-
+=
 Y-\sum_{\ell\neq k}
 K_\ell\alpha_\ell b_\ell^\top.
 $$
@@ -106,25 +104,23 @@ The provisional RKHS-penalty update is
 
 $$
 \widetilde{\alpha}_k
-====================
-
+=
 \left[
 (b_k^\top b_k)K_k+\lambda I_N
 \right]^{-1}
-R_kb_k,
+R_kb_k.
 $$
 
-followed by normalization so that the component (K_k\alpha_k) has divisor-(N) variance one.
+This is followed by normalization so that the component \(K_k\alpha_k\) has divisor-\(N\) variance one.
 
 The default Gaussian kernel is
 
 $$
 \kappa(x,z)
-===========
-
-\exp\left{
--\frac{|x-z|^2}{2\sigma^2}
-\right}.
+=
+\exp\left\{
+-\frac{\|x-z\|^2}{2\sigma^2}
+\right\}.
 $$
 
 Use
