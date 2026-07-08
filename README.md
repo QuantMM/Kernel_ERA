@@ -79,14 +79,7 @@ $$
 subject to
 
 $$
-\frac{1}{N}
-\left\|
-K_k\alpha_k
-\right\|_2^2
-=
-1,
-\qquad
-k=1,\ldots,K.
+\frac{1}{N}\left\|K_k\alpha_k\right\|_2^2 = 1, \qquad k=1,\ldots,K.
 $$
 
 Here, $K_k$ is the centered Gram matrix for predictor set $k$, $\alpha_k$ is the corresponding vector of kernel coefficients, and $b_k$ is the row of outcome coefficients associated with the $k$th predictor-set component.
@@ -94,21 +87,13 @@ Here, $K_k$ is the centered Gram matrix for predictor set $k$, $\alpha_k$ is the
 For fixed $b_k$, define the partial residual matrix
 
 $$
-R_k
-=
-Y-\sum_{\ell\neq k}
-K_\ell\alpha_\ell b_\ell^\top.
+R_k = Y-\sum_{\ell\neq k}K_\ell\alpha_\ell b_\ell^\top.
 $$
 
 The provisional RKHS-penalty update is
 
 $$
-\widetilde{\alpha}_k
-=
-\left[
-(b_k^\top b_k)K_k+\lambda I_N
-\right]^{-1}
-R_kb_k.
+\widetilde{\alpha}_k = \left[(b_k^\top b_k)K_k+\lambda I_N\right]^{-1}R_kb_k.
 $$
 
 This is followed by normalization so that the component $K_k\alpha_k$ has divisor-$N$ variance one.
@@ -116,11 +101,7 @@ This is followed by normalization so that the component $K_k\alpha_k$ has diviso
 The default Gaussian kernel is
 
 $$
-\kappa(x,z)
-=
-\exp\left\{
--\frac{\|x-z\|^2}{2\sigma^2}
-\right\}.
+\kappa(x,z) = \exp\left\{-\frac{\|x-z\|^2}{2\sigma^2}\right\}.
 $$
 
 Use
