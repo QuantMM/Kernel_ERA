@@ -158,26 +158,3 @@ The main grid crosses:
 with three prespecified predictor sets, a test sample of 1,000, within-set correlation `.40`, and between-set correlation `.10`.
 
 This design is a defensible starting point rather than a locked manuscript decision. The final number of conditions and Monte Carlo replications should be set after timing and tuning-boundary diagnostics from the pilot.
-
-## Optional penalty sensitivity analysis
-
-The manuscript-matching default is
-
-```r
-penalty = "rkhs"
-```
-
-An optional dual-coefficient penalty is available as
-
-```r
-penalty = "dual_l2"
-```
-
-Its update solves
-
-\[
-\left[(b_k^\top b_k)K_k^2+\lambda I_N\right]\alpha_k
-=K_kR_kb_k.
-\]
-
-This option should be treated as a separate method or sensitivity analysis, not mixed with the primary RKHS specification.
