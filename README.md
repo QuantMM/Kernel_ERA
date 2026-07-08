@@ -35,12 +35,15 @@ This repository implements the current Kernel Extended Redundancy Analysis (Kern
 
 ### Tests and diagnostics
 
-* `run_kernel_era_pilot_simulation(10 replications).R`
+* `run_kernel_era_unit_tests.R`
 
   * lightweight checks of divisor-(N) scaling, kernel centering, spectral/direct update equivalence, one-observation prediction, stored fitted values, and multivariate outcomes
+
+* `run_kernel_era_quick_check.R`
+
   * small diagnostic checking standardization, kernel centering, component normalization, prediction, tuning, and one complete replication
 
-* `run_kernel_era_pilot_simulation(30 replications).R`
+* `run_kernel_era_stability_pilot_30rep.R`
 
   * focused stability pilot for the three core linear, mixed, and nonlinear scenarios
   * evaluates minimum-CV tuning among fully converged candidates
@@ -64,10 +67,10 @@ Older exploratory simulation scripts may be retained for reproducibility, but th
 The current implementation estimates
 
 $$
-\min_{\{\alpha_k\},B}
-\left\|
+\min_{\\{\\alpha_k\\},B}
+\left\\|
 Y-\sum_{k=1}^K K_k\alpha_k b_k^\top
-\right\|_F^2
+\right\\|_F^2
 +
 \lambda\sum_{k=1}^K
 \alpha_k^\top K_k\alpha_k
@@ -76,7 +79,7 @@ $$
 subject to
 
 $$
-\frac{1}{N}\left\|K_k\alpha_k\right\|_2^2 = 1, \qquad k=1,\ldots,K.
+\frac{1}{N}\left\\|K_k\alpha_k\right\\|_2^2 = 1, \qquad k=1,\ldots,K.
 $$
 
 Here, $K_k$ is the centered Gram matrix for predictor set $k$, $\alpha_k$ is the corresponding vector of kernel coefficients, and $b_k$ is the row of outcome coefficients associated with the $k$th predictor-set component.
@@ -98,7 +101,7 @@ This is followed by normalization so that the component $K_k\alpha_k$ has diviso
 The default Gaussian kernel is
 
 $$
-\kappa(x,z) = \exp\left\{-\frac{\|x-z\|^2}{2\sigma^2}\right\}.
+\kappa(x,z) = \exp\left\\{-\frac{\\|x-z\\|^2}{2\sigma^2}\right\\}.
 $$
 
 Use
