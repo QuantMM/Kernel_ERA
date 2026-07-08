@@ -35,15 +35,12 @@ This repository implements the current Kernel Extended Redundancy Analysis (Kern
 
 ### Tests and diagnostics
 
-* `run_kernel_era_unit_tests.R`
+* `run_kernel_era_pilot_simulation(10 replications).R`
 
   * lightweight checks of divisor-(N) scaling, kernel centering, spectral/direct update equivalence, one-observation prediction, stored fitted values, and multivariate outcomes
-
-* `run_kernel_era_quick_check.R`
-
   * small diagnostic checking standardization, kernel centering, component normalization, prediction, tuning, and one complete replication
 
-* `run_kernel_era_stability_pilot_30rep.R`
+* `run_kernel_era_pilot_simulation(30 replications).R`
 
   * focused stability pilot for the three core linear, mixed, and nonlinear scenarios
   * evaluates minimum-CV tuning among fully converged candidates
