@@ -69,7 +69,7 @@ followed by normalization to make the component have divisor-`N` variance one.
 The default Gaussian kernel is
 
 $$
-\kappa(x,z)=\exp\left\{-\frac{\|x-z\|^2}{2\sigma^2}\right\}.
+\kappa(x,z)=\exp\left\{-\frac{|x-z|^2}{2\sigma^2}\right\}.
 $$
 
 Use `gaussian_denominator = "sigma_squared"` only for a sensitivity analysis using the alternative parameterization without the factor `2`.
