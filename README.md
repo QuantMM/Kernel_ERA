@@ -89,9 +89,9 @@ K_k\alpha_k
 k=1,\ldots,K.
 $$
 
-Here, \(K_k\) is the centered Gram matrix for predictor set \(k\), \(\alpha_k\) is the corresponding vector of kernel coefficients, and \(b_k\) is the row of outcome coefficients associated with the \(k\)th predictor-set component.
+Here, $K_k$ is the centered Gram matrix for predictor set $k$, $\alpha_k$ is the corresponding vector of kernel coefficients, and $b_k$ is the row of outcome coefficients associated with the $k$th predictor-set component.
 
-For fixed \(b_k\), define the partial residual matrix
+For fixed $b_k$, define the partial residual matrix
 
 $$
 R_k
@@ -111,7 +111,7 @@ $$
 R_kb_k.
 $$
 
-This is followed by normalization so that the component \(K_k\alpha_k\) has divisor-\(N\) variance one.
+This is followed by normalization so that the component $K_k\alpha_k$ has divisor-$N$ variance one.
 
 The default Gaussian kernel is
 
@@ -147,7 +147,7 @@ It does not construct a kernel using only the test observations. Cross-kernel ce
 
 ### 3. Shared tuning parameters
 
-The simulation uses one ridge parameter (\lambda) and one Gaussian bandwidth (\sigma) shared across all predictor sets, matching the current manuscript specification.
+The simulation uses one ridge parameter $\lambda$ and one Gaussian bandwidth $\sigma$ shared across all predictor sets, matching the current manuscript specification.
 
 The fitting functions can accept set-specific bandwidths, but the supplied simulation and tuning procedures deliberately select shared scalar values.
 
@@ -162,23 +162,19 @@ cv_selection = "minimum"
 cv_require_all_folds_converged = TRUE
 ```
 
-The one-standard-error rule is not used as the primary procedure because ordering Kernel ERA model complexity jointly through (\lambda) and (\sigma) is not straightforward, and preliminary analyses showed that the implemented one-standard-error rule could produce excessive smoothing.
+The one-standard-error rule is not used as the primary procedure because ordering Kernel ERA model complexity jointly through $\lambda$ and $\sigma$ is not straightforward, and preliminary analyses showed that the implemented one-standard-error rule could produce excessive smoothing.
 
 `kernel_era_matlab_gcv()` reproduces the MATLAB projection-GCV calculation. It is retained for replication and methodological comparison, but it is not used as the default simulation tuner.
 
 ### 5. Dimension-adjusted Gaussian bandwidth grids
 
-The main simulation contains predictor sets with different dimensions. Because Euclidean distances among standardized observations increase approximately in proportion to (\sqrt{P_k}), the Gaussian bandwidth grid is scaled according to
+The main simulation contains predictor sets with different dimensions. Because Euclidean distances among standardized observations increase approximately in proportion to $\sqrt{P_k}$, the Gaussian bandwidth grid is scaled according to
 
 $$
-\sigma(P_k)
-===========
-
-\sigma_{\mathrm{base}}
-\sqrt{\frac{P_k}{5}}.
+\sigma(P_k) = \sigma_{\mathrm{base}}\sqrt{\frac{P_k}{5}}.
 $$
 
-The base grid for (P_k=5) is
+The base grid for $P_k=5$ is
 
 ```r
 BASE_SIGMA_GRID <- c(
@@ -202,7 +198,7 @@ The current ridge grid is
 LAMBDA_GRID <- 10^seq(-4, 3, by = 1)
 ```
 
-The very small value (\lambda=10^{-5}) was excluded after preliminary checks repeatedly identified it as part of a pathological small-(\lambda), small-(\sigma) interpolation region. Smaller bandwidth values are otherwise retained so that finite-sample instability in difficult conditions can be observed and reported.
+The very small value $\lambda=10^{-5}$ was excluded after preliminary checks repeatedly identified it as part of a pathological small-$\lambda$, small-$\sigma$ interpolation region. Smaller bandwidth values are otherwise retained so that finite-sample instability in difficult conditions can be observed and reported.
 
 ### 6. Spectral solver
 
@@ -214,7 +210,7 @@ solver = "spectral"
 
 uses the eigendecomposition of each centered Gram matrix.
 
-For the RKHS update, it is algebraically equivalent on the kernel range to solving the corresponding direct linear system, while avoiding repeated (N\times N) factorizations at every alternating least-squares iteration.
+For the RKHS update, it is algebraically equivalent on the kernel range to solving the corresponding direct linear system, while avoiding repeated $N\times N$ factorizations at every alternating least-squares iteration.
 
 Use
 
@@ -244,7 +240,7 @@ objective_tol = 1e-9
 
 ### 8. Sign orientation
 
-A predictor-set component and its outcome coefficient may both be multiplied by (-1) without changing the fitted contribution.
+A predictor-set component and its outcome coefficient may both be multiplied by $-1$ without changing the fitted contribution.
 
 Simulation recovery and bootstrap summaries therefore align each fitted component to a reference component before reporting coefficients or component-recovery measures.
 
@@ -344,23 +340,23 @@ The main simulation contains 24 conditions crossing:
   * fully nonlinear
 * training sample size:
 
-  * (N=150)
-  * (N=300)
+  * $N=150$
+  * $N=300$
 * predictors per set:
 
-  * (P_k=5)
-  * (P_k=20)
+  * $P_k=5$
+  * $P_k=20$
 * target population signal level:
 
-  * (R^2=.30)
-  * (R^2=.60)
+  * $R^2=.30$
+  * $R^2=.60$
 
 All conditions use:
 
 * three prespecified predictor sets
 * an independent test sample of 1,000 observations
-* within-set predictor correlation of (.40)
-* between-set predictor correlation of (.10)
-* nonlinearity-strength setting of (.35)
+* within-set predictor correlation of $.40$
+* between-set predictor correlation of $.10$
+* nonlinearity-strength setting of $.35$
 
 The main script currently uses 200 Monte Carlo replications per condition. The run is resumable at the condition-replication level.
