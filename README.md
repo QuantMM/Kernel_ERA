@@ -1,6 +1,6 @@
 # Kernel ERA R Implementation and Simulation Framework
 
-This folder implements the current Kernel Extended Redundancy Analysis (Kernel ERA) model and provides a resumable Monte Carlo simulation framework.
+This repository implements the current Kernel Extended Redundancy Analysis (Kernel ERA) model and provides a resumable Monte Carlo simulation framework.
 
 ## Files
 
@@ -45,12 +45,13 @@ This folder implements the current Kernel Extended Redundancy Analysis (Kernel E
 
 The default implementation is
 
+```math
 \[
 \min_{\{\alpha_k\},B}
 \left\|Y-\sum_{k=1}^K K_k\alpha_k b_k^\top\right\|_F^2
 +\lambda\sum_{k=1}^K\alpha_k^\top K_k\alpha_k,
 \]
-
+```
 subject to
 
 \[
