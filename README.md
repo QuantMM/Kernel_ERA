@@ -42,37 +42,26 @@ This repository implements the current Kernel Extended Redundancy Analysis (Kern
   - main-study template using the proposed factorial design, five-fold cross-validation, and resumable output
 
 ## Current manuscript specification
-
 The default implementation is
-
-```math
-\[
+$$
 \min_{\{\alpha_k\},B}
 \left\|Y-\sum_{k=1}^K K_k\alpha_k b_k^\top\right\|_F^2
 +\lambda\sum_{k=1}^K\alpha_k^\top K_k\alpha_k,
-\]
-```
+$$
 subject to
-
-\[
+$$
 \frac{1}{N}\|K_k\alpha_k\|_2^2=1.
-\]
-
+$$
 For a fixed outcome-coefficient row `b_k`, the provisional RKHS-penalty update is
-
-\[
+$$
 \widetilde\alpha_k=
 \left[(b_k^\top b_k)K_k+\lambda I_N\right]^{-1}R_kb_k,
-\]
-
+$$
 followed by normalization to make the component have divisor-`N` variance one.
-
 The default Gaussian kernel is
-
-\[
+$$
 \kappa(x,z)=\exp\left\{-\frac{\|x-z\|^2}{2\sigma^2}\right\}.
-\]
-
+$$
 Use `gaussian_denominator = "sigma_squared"` only for a sensitivity analysis using the alternative parameterization without the factor `2`.
 
 ## Important implementation choices
