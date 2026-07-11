@@ -1,0 +1,4 @@
+scenario,n_conditions,mean_delta_r2_all,mean_delta_r2_stable,mean_kernel_r2_win_rate_all,mean_mse_reduction_all,mean_final_stable_rate,min_final_stable_rate,mean_final_nonconvergence_rate,max_final_nonconvergence_rate,mean_final_interpolation_rate,mean_unrestricted_minimum_exclusion_rate,mean_any_boundary_rate
+linear,8,0.02858390155497095,0.028566496615518074,0.5625,0.02309335170235195,0.99625,0.97,0.00375,0.03,0.0,0.125625,0.54
+mixed,8,0.15051321734346274,0.15070788678742134,0.935,0.15857835292333422,0.9975,0.985,0.0025,0.015,0.0,0.170625,0.4225
+nonlinear,8,0.24833169109692,0.24833169109692,0.989375,0.21886042391718416,1.0,1.0,0.0,0.0,0.0,0.275625,0.44937499999999997
