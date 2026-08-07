@@ -2,6 +2,8 @@
 
 This repository implements the current Kernel Extended Redundancy Analysis (Kernel ERA) model and provides a resumable Monte Carlo simulation framework for evaluating prediction, component recovery, tuning behavior, and finite-sample estimation stability.
 
+**Version note.** This repository currently reflects the full simulation (500 replications per condition) prepared for the manuscript revision. The only substantive change from the technical-report / conference version is the increase from 200 to 500 replications; the estimator, tuning grids, data-generating mechanisms, seed scheme, and reporting structure are unchanged. The 200-replication version is preserved at release [`v1.0-techreport-200rep`](../../releases/tag/v1.0-techreport-200rep). See [`CHANGELOG.md`](CHANGELOG.md) for details.
+
 ## Files
 
 ### Core implementation
@@ -340,4 +342,4 @@ All conditions use:
 * between-set predictor correlation of $.10$
 * nonlinearity-strength setting of $.35$
 
-The main script currently uses 200 Monte Carlo replications per condition. The run is resumable at the condition-replication level.
+The main script currently uses 500 Monte Carlo replications per condition. The run is resumable at the condition-replication level: the earlier 200-replication results are reused (overwrite = FALSE) on the same seed scheme, and only replications 201–500 are newly computed. The 200-replication version underlying the technical report and conference presentation is preserved at release v1.0-techreport-200rep.
