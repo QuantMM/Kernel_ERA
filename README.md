@@ -53,16 +53,22 @@ This repository implements the current Kernel Extended Redundancy Analysis (Kern
 
 ### Main simulation
 
-* `run_kernel_era_main_simulation_reporting_instability.R`
+* `run_kernel_era_main_simulation_reporting_instability_500rep.R`
 
-  * current recommended main simulation script
+  * current recommended main simulation script (500 replications per condition)
   * supports both short pilot and full main-simulation modes
   * uses dimension-adjusted Gaussian bandwidth grids
   * retains nonconvergence and interpolation as substantive simulation outcomes
   * produces both all-operational and stable-replication summaries
   * saves resumable condition-by-replication results
 
-Older exploratory simulation scripts may be retained for reproducibility, but the current workflow is based on `run_kernel_era_main_simulation_reporting_instability.R`.
+* `run_kernel_era_main_simulation_reporting_instability.R`
+
+  * 200-replication version underlying the technical report and conference presentation (release `v1.0-techreport-200rep`)
+  * identical to the 500-replication script except for `N_REP_MAIN <- 200L`
+  * retained so that the resumable 200 → 500 workflow is transparent: running the 500-replication script with `overwrite = FALSE` against the same results directory reuses these 200 replications and computes only replications 201–500 on the same seed scheme
+
+Older exploratory simulation scripts may be retained for reproducibility, but the current workflow is based on `run_kernel_era_main_simulation_reporting_instability_500rep.R`.
 
 ## Current model specification
 
@@ -276,6 +282,10 @@ This distinction allows estimation instability under small-sample, relatively hi
 * `combined_error.csv`
 * `main_results_combined.rds`
 
+Two further combined files are written only when the corresponding results are non-empty, so they are absent from a default main run:
+* `combined_inference.csv` — written only when bootstrap_reps > 0. The main simulation uses bootstrap_reps = 0L, so no inference file is produced.
+* `combined_error.csv` — written only when at least one task raised an error. A clean run with zero task-level errors produces no error file.
+
 ### Performance and recovery summaries
 
 * `summary_performance_all_operational.csv`
@@ -311,6 +321,8 @@ This distinction allows estimation instability under small-sample, relatively hi
 * `pipeline_integrity.csv`
 
 `pipeline_integrity.csv` evaluates whether the requested tasks and post-processing steps completed successfully. Observed nonconvergence or interpolation is treated as a simulation result and does not, by itself, constitute a pipeline failure.
+
+Each main run also creates per-dimension subdirectories (`p_per_set_05`, `p_per_set_20`) holding the resumable condition-by-replication files from which the combined and summary outputs above are assembled.
 
 ## Main design currently encoded
 
